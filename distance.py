@@ -4,8 +4,8 @@ import time
 GPIO.setmode(GPIO.BOARD)
 
 # ultracsonic sensor for distance calculation
-Trig = 11
-Echo = 15
+Trig = 7
+Echo = 11
 
 # infrared sensor for obstacle detection
 Obs = N.A.
@@ -13,8 +13,7 @@ GPIO.setup(Obs, GPIO.IN)
 
 # ultracsonic senso logic
 def checkdist():
-    Trig = 11
-    Echo = 15
+
     t0 = time.time()
 
     GPIO.setup(Trig, GPIO.OUT, initial=GPIO.LOW)

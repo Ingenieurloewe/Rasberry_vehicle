@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
-import CarControl
+import CarControl.py
+import time
 import distance
+
 GPIO.setmode(GPIO.BOARD)
 
 
@@ -11,8 +13,8 @@ def main ():
 def go():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
-    Trig = 11
-    Echo = 15
+    Trig = 7
+    Echo = 11
     GPIO.setup(12,GPIO.OUT)
     GPIO.setup(16,GPIO.OUT)
     GPIO.setup(33,GPIO.OUT) 
