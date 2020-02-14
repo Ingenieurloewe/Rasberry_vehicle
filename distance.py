@@ -7,9 +7,6 @@ GPIO.setmode(GPIO.BOARD)
 Trig = 7
 Echo = 11
 
-# infrared sensor for obstacle detection
-Obs = N.A.
-GPIO.setup(Obs, GPIO.IN)
 
 # ultracsonic senso logic
 def checkdist():
@@ -33,15 +30,6 @@ def checkdist():
 def diststart():
     while True:
         checkdist()
-
-# infrared sensor logic
-def obstaclewarn():
-    # if obstacle is in range, sensor return no no value to IO
-    while GPIO.input(Obs):
-        return False
-    else:
-        return True
-
 
 diststart()
 time.sleep(5)

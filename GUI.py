@@ -1,45 +1,55 @@
 from tkinter import *
-
 import function
 
 
-class App:
-    def __init__(self, master):
-        # 使用Frame增加一层容器
+class Application(Frame):
 
-        fm1 = Frame(master)
+    def __init__(self, master=None):
+        Frame.__init__(self, master,bg='LightYellow')
+
+        self.focus_set()
+
+        # combine the w-a-s-d to car control function
+        self.bind("<w>", function.xFunc1)  # TODO replace with car control function
+        self.bind("<s>", function.xFunc1)  # TODO replace with car control function
+        self.bind("<a>", function.xFunc1)      # TODO replace with car control function
+        self.bind("<d>", function.xFunc1)     # TODO replace with car control function
+
+        self.pack(expand=YES, fill=BOTH)
+        self.fm1 = Frame(self, bg='LightYellow')
+        self.fm2=Frame(self,bg='black')
+
+        self.window_init()
+        self.createwidght()
+
+    def window_init(self):
+        self.master.title('welcome to my raspberry car')
+        self.master.bg = 'black'
+        width, height = self.master.maxsize()
+        self.master.geometry("{}x{}".format(width, height))
+
+    def createwidght(self):
+        # fm1
         # Button是一种按钮组件，与Label类似，只是多出了响应点击的功能
-        Button(fm1, text='Top').pack(side=TOP, anchor=W, fill=X, expand=NO)
-        Button(fm1, text='Center').pack(side=TOP, anchor=W, fill=X, expand=YES)
-        Button(fm1, text='Bottom').pack(side=TOP, anchor=W, fill=X, expand=YES)
-        fm1.pack(side=LEFT, fill=BOTH, expand=YES)
 
-        fm2 = Frame(master)
-        Button(fm2, text='Left').pack(side=LEFT)
-        Button(fm2, text='This is the Center button').pack(side=LEFT)
-        Button(fm2, text='Right').pack(side=LEFT)
-        fm2.pack(side=LEFT, padx=10)
+        # TODO replace with car control function
+        b1=Button(self.fm1, text='W-Forward',bg='DeepSkyBlue',command = self.function ).pack(side=TOP, anchor=CENTER, fill=X, expand=YES)
+        b2=Button(self.fm1, text='A-Left',bg='DeepSkyBlue', command = self.function).pack(side=LEFT, anchor=W, fill=X, expand=YES)
+        b3=Button(self.fm1, text='S-Backward',bg='DeepSkyBlue',command = self.function).pack(side=LEFT, anchor=W, fill=X, expand=YES)
+        b4=Button(self.fm1, text='D-Right',bg='DeepSkyBlue',command = self.function).pack(side=LEFT, anchor=W, fill=X, expand=YES)
+        # TODO replace with car control function
 
-        la=Label(master)
-        Label(root,text = 'pack1',bg = 'red').pack()
+        self.fm1.pack(side=TOP, fill=BOTH, expand=NO)
 
-root = Tk()
-root.title("Pack - Example")
-display = App(root)
-root.mainloop()
+        # fm2
+        Label(self.fm2, text='video').pack(side=BOTTOM, anchor=W, fill=X, expand=YES)
+        self.fm2.pack(side=BOTTOM, fill=BOTH, expand=YES)
 
+    # TODO onyl for test, can be delete later
+    def function(self):
+        print("hello")
 
 
-win = tkinter.Tk()
-win.title("Kahn Software v1")  # #窗口标题
-win.geometry("600x500+200+20")  # #窗口位置500后面是字母x
-'''
-响应所有事件(键盘)
-<Key>   所有键盘按键会触发
-'''
-xLabel = tkinter.Label(win, text="KAHN Hello world")
-xLabel.focus_set()
-xLabel.pack()
-xLabel.bind("<w>", function.xFunc1)
 
-win.mainloop()  # #窗口持久化c
+app = Application()
+app.mainloop()

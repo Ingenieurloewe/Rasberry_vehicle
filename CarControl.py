@@ -17,8 +17,8 @@ class Car(object):
     Echo = 11
 
     def __init__(self,dc_a,dc_b):
-        self.dc_a=50  # pwm dutycycle to control speed, init with 50, range 0--100
-        self.dc_b=50
+        self.dc_a=30  # pwm dutycycle to control speed, init with 30, range 0--100
+        self.dc_b=30
         GPIO.setup(Car.IN1, GPIO.OUT)
         GPIO.setup(Car.IN2, GPIO.OUT)
         GPIO.setup(Car.ENA, GPIO.OUT)  # PWM
@@ -58,7 +58,7 @@ class Car(object):
         GPIO.output(Car.IN4, False)
 
     def turnright(self):
-        GGPIO.PWM(Car.ENA, self.dc_a)
+        GPIO.PWM(Car.ENA, self.dc_a)
         GPIO.output(Car.IN1, True)
         GPIO.output(Car.IN2, False)
 
